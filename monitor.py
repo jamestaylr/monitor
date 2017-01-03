@@ -89,9 +89,11 @@ for site in sites:
         continue
 
     # Report on newly published products
-    for product in get_products(site['url'], 5):
-        if product['id'] == int(previous[0]):
-            break
+    try:
+        n = config.get('monitor', 'delta_requests')
+        for product in get_products(site['url'], n):
+            if product['id'] == int(previous[0]):
+                break
 
         tweet('{} by {} {}{}'.format(
             product['title'],
@@ -99,6 +101,9 @@ for site in sites:
             site['base_handle'],
             product['handle']
         ))
+    except requests.exceptions.HTTPError:
+        print 'Processing site {} failed'.format(site['name'])
+        continue
 
     # Update the lock
     with open(lock_filename, 'w') as lock:
