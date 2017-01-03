@@ -36,23 +36,38 @@ def tweet(status_string):
             }),
             headers=None
         )
-    content = json.loads(content)
-    print resp.status, (content['id'] if resp.status == 200
-            else [ str(error['message']) for error in content['errors'] ])
+
+    try:
+        content = json.loads(content)
+        print 'Posted tweet with status', resp.status, (content['id']
+            if resp.status == 200
+                else [ str(error['message']) for error in content['errors'] ])
+    except ValueError:
+        pass
 
 """ Gets products from a url returning a single product or array of products
 """
 def get_products(url, limit):
     payload = {'limit': limit}
-    r = requests.get(url, params=payload).json()
-    products = sorted(r['products'], key=lambda x: x['published_at'], reverse=True)
+    r = requests.get(url, params=payload)
+
+    if r.status_code != 200:
+        print 'Handling a {} status code'.format(r.status_code)
+        r.raise_for_status()
+
+    json = r.json()
+    products = sorted(json['products'], key=lambda x: x['published_at'], reverse=True)
     return products if len(products) != 1 else products[0]
 
 # Check the content from the subscribed sites
 sites = json.loads(open('data.json').read())['sites']
 for site in sites:
     # Get the most recently published product
-    current = get_products(site['url'], 1)
+    try:
+        current = get_products(site['url'], 1)
+    except requests.exceptions.HTTPError:
+        print 'Processing site {} failed'.format(site['name'])
+        continue
 
     lock_filename = 'locks/{}.lock'.format(site['name'])
     try:
