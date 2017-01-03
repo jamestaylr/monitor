@@ -79,12 +79,13 @@ for site in sites:
         # Lock on the current product does not exist, recreate the lock
         if not os.path.exists(os.path.dirname(lock_filename)):
             try:
-                os.makedirs(os.path.dirname(filename))
+                os.makedirs(os.path.dirname(lock_filename))
             except OSError as exc: # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
         with open(lock_filename, 'w') as lock:
             lock.write('{} {}'.format(current['id'], current['published_at']))
+        print 'Creating new lock file {}'.format(lock_filename)
         continue
 
     # Report on newly published products
