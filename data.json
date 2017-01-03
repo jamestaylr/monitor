@@ -1,0 +1,199 @@
+{
+    "sites": [
+        {
+            "name": "Notre",
+            "url": "https://notre.myshopify.com/products.json",
+            "base_handle": "https://www.notre-shop.com/products/"
+        },
+        {
+            "name": "Oneness",
+            "url": "https://www.oneness287.com/products.json",
+            "base_handle": "https://www.oneness287.com/products/"
+        },
+        {
+            "name": "Blends",
+            "url": "https://www.blendsus.com/products.json",
+            "base_handle": "https://www.blendsus.com/products/"
+        },
+        {
+            "name": "Livestock",
+            "url": "http://www.deadstock.ca/products.json",
+            "base_handle": "http://www.deadstock.ca/products/"
+        },
+        {
+            "name": "Exclucity",
+            "url": "https://shop.exclucitylife.com/products.json",
+            "base_handle": "https://shop.exclucitylife.com/products/"
+        },
+        {
+            "name": "Xhibition",
+            "url": "https://www.xhibition.co/products.json",
+            "base_handle": "https://www.xhibition.co/products/"
+        },
+        {
+            "name": "ReigningChamp",
+            "url": "http://reigningchamp.myshopify.com/products.json",
+            "base_handle": "http://reigningchamp.com/products/"
+        },
+        {
+            "name": "Concepts",
+            "url": "http://cncpts.com/products.json",
+            "base_handle": "http://cncpts.com/products/"
+        },
+        {
+            "name": "ShopNiceKicks",
+            "url": "http://shopnicekicks.com/products.json",
+            "base_handle": "http://shopnicekicks.com/products/"
+        },
+        {
+            "name": "HavenShop",
+            "url": "http://shop.havenshop.ca/products.json",
+            "base_handle": "http://shop.havenshop.ca/products/"
+        },
+        {
+            "name": "OctobersVeryOwn",
+            "url": "https://us.octobersveryown.com/products.json",
+            "base_handle": "https://us.octobersveryown.com/products/"
+        },
+        {
+            "name": "TrophyRoom",
+            "url": "https://www.trophyroomstore.com/products.json",
+            "base_handle": "https://www.trophyroomstore.com/products/"
+        },
+        {
+            "name": "12AMRun",
+            "url": "http://www.12amrun.com/products.json",
+            "base_handle": "http://www.12amrun.com/products/"
+        },
+        {
+            "name": "Feature",
+            "url": "https://www.featuresneakerboutique.com/products.json",
+            "base_handle": "https://www.featuresneakerboutique.com/products/"
+        },
+        {
+            "name": "Rime",
+            "url": "https://www.rimenyc.com/products.json",
+            "base_handle": "https://www.rimenyc.com/products/"
+        },
+        {
+            "name": "Attic",
+            "url": "https://attic2zoo.com/products.json",
+            "base_handle": "https://attic2zoo.com/products/"
+        },
+        {
+            "name": "ShoeGallery",
+            "url": "https://shoegallerymiami.com/products.json",
+            "base_handle": "https://shoegallerymiami.com/products/"
+        },
+        {
+            "name": "BowsAndArrows",
+            "url": "https://www.bowsandarrowsberkeley.com/products.json",
+            "base_handle": "https://www.bowsandarrowsberkeley.com/products/"
+        },
+        {
+            "name": "Renarts",
+            "url": "https://renarts.com/products.json",
+            "base_handle": "https://renarts.com/products/"
+        },
+        {
+            "name": "Alumni",
+            "url": "https://www.alumniofny.com/products.json",
+            "base_handle": "https://www.alumniofny.com/products/"
+        },
+        {
+            "name": "OffTheHook",
+            "url": "https://offthehook.ca/products.json",
+            "base_handle": "https://offthehook.ca/products/"
+        },
+        {
+            "name": "Concrete",
+            "url": "https://concrete.nl/products.json",
+            "base_handle": "https://concrete.nl/products/"
+        },
+        {
+            "name": "ClosetClothingCo",
+            "url": "https://www.theclosetinc.com/products.json",
+            "base_handle": "https://www.theclosetinc.com/products/"
+        },
+        {
+            "name": "OiPolloi",
+            "url": "https://www.oipolloi.com/products.json",
+            "base_handle": "https://www.oipolloi.com/products/"
+        },
+        {
+            "name": "SoleHeaven",
+            "url": "https://www.soleheaven.com/products.json",
+            "base_handle": "https://www.soleheaven.com/products/"
+        },
+        {
+            "name": "Crephut",
+            "url": "https://crephut.com/products.json",
+            "base_handle": "https://crephut.com/products/"
+        },
+        {
+            "name": "RockCityKicks",
+            "url": "https://rockcitykicks.com/products.json",
+            "base_handle": "https://rockcitykicks.com/products/"
+        },
+        {
+            "name": "Nomad",
+            "url": "http://nomadshop.net/products.json",
+            "base_handle": "http://nomadshop.net/products/"
+        },
+        {
+            "name": "Proper",
+            "url": "https://properlbc.com/products.json",
+            "base_handle": "https://properlbc.com/products/"
+        },
+        {
+            "name": "SoleFly",
+            "url": "https://www.solefly.com/products.json",
+            "base_handle": "https://www.solefly.com/products/"
+        },
+        {
+            "name": "Wish",
+            "url": "https://wishatl.com/products.json",
+            "base_handle": "https://wishatl.com/products/"
+        },
+        {
+            "name": "SUEDE",
+            "url": "https://suede-store.com/products.json",
+            "base_handle": "https://suede-store.com/products/"
+        },
+        {
+            "name": "SneakerPolitics",
+            "url": "http://sneakerpolitics.com/products.json",
+            "base_handle": "http://sneakerpolitics.com/products/"
+        },
+        {
+            "name": "BurnRubber",
+            "url": "https://burnrubbersneakers.com/products.json",
+            "base_handle": "https://burnrubbersneakers.com/products/"
+        },
+        {
+            "name": "SaintAlfred",
+            "url": "http://www.saintalfred.com/products.json",
+            "base_handle": "http://www.saintalfred.com/products/"
+        },
+        {
+            "name": "CourtsideSneakers",
+            "url": "https://www.courtsidesneakers.com/products.json",
+            "base_handle": "https://www.courtsidesneakers.com/products/"
+        },
+        {
+            "name": "MinishopMadrid",
+            "url": "https://www.minishopmadrid.com/products.json",
+            "base_handle": "https://www.minishopmadrid.com/products/"
+        },
+        {
+            "name": "HighsAndLows",
+            "url": "http://www.highsandlows.net.au/products.json",
+            "base_handle": "http://www.highsandlows.net.au/products/"
+        },
+        {
+            "name": "ExtraButter",
+            "url": "http://shop.extrabutterny.com/products.json",
+            "base_handle": "http://shop.extrabutterny.com/products/"
+        }
+    ]
+}
