@@ -48,3 +48,37 @@ def get_products(url, limit):
     products = sorted(r['products'], key=lambda x: x['published_at'], reverse=True)
     return products if len(products) != 1 else products[0]
 
+# Check the content from the subscribed sites
+sites = json.loads(open('data.json').read())['sites']
+for site in sites:
+    # Get the most recently published product
+    current = get_products(site['url'], 1)
+
+    lock_filename = 'locks/{}.lock'.format(site['name'])
+    try:
+        previous = open(lock_filename, 'r').read().split()
+        # Compare to the lock
+        if current['id'] == int(previous[0]):
+            continue
+    except IOError:
+        # Lock on the current product does not exist, recreate the lock
+        with open(lock_filename, 'w') as lock:
+            lock.write('{} {}'.format(current['id'], current['published_at']))
+        continue
+
+    # Report on newly published products
+    for product in get_products(site['url'], 5):
+        if product['id'] == int(previous[0]):
+            break
+
+        tweet('{} by {} {}{}'.format(
+            product['title'],
+            product['vendor'],
+            site['base_handle'],
+            product['handle']
+        ))
+
+    # Update the lock
+    with open(lock_filename, 'w') as lock:
+        lock.write('{} {}'.format(current['id'], current['published_at']))
+
