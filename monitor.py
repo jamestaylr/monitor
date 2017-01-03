@@ -40,3 +40,11 @@ def tweet(status_string):
     print resp.status, (content['id'] if resp.status == 200
             else [ str(error['message']) for error in content['errors'] ])
 
+""" Gets products from a url returning a single product or array of products
+"""
+def get_products(url, limit):
+    payload = {'limit': limit}
+    r = requests.get(url, params=payload).json()
+    products = sorted(r['products'], key=lambda x: x['published_at'], reverse=True)
+    return products if len(products) != 1 else products[0]
+
