@@ -59,6 +59,17 @@ def get_products(url, limit):
     products = sorted(json['products'], key=lambda x: x['published_at'], reverse=True)
     return products if len(products) != 1 else products[0]
 
+def get_link(original):
+    payload = {
+        'format': 'txt',
+        'login': config.get('bitly', 'user'),
+        'apiKey':  config.get('bitly', 'token'),
+        'longURL': original
+    }
+    r = requests.get('http://api.bit.ly/v3/shorten', params=payload)
+
+    return r.content if r.status_code == 200 else original
+
 # Check the content from the subscribed sites
 sites = json.loads(open('data.json').read())['sites']
 for site in sites:
@@ -95,12 +106,14 @@ for site in sites:
             if product['id'] == int(previous[0]):
                 break
 
-        tweet('{} by {} {}{}'.format(
-            product['title'],
-            product['vendor'],
-            site['base_handle'],
-            product['handle']
-        ))
+            link = '{}{}'.format(site['base_handle'], product['handle'])
+            link = link.encode('ascii', 'ignore')
+
+            tweet('{} {}'.format(
+                product['title'],
+                get_link(link)
+            ), media_id)
+
     except requests.exceptions.HTTPError:
         print 'Processing site {} failed'.format(site['name'])
         continue
