@@ -194,6 +194,31 @@
             "name": "ExtraButter",
             "url": "http://shop.extrabutterny.com/products.json",
             "base_handle": "http://shop.extrabutterny.com/products/"
+        },
+        {
+            "name": "Bodega",
+            "url": "http://bdga.myshopify.com/products.json",
+            "base_handle": "https://shop.bdgastore.com/products/"
+        },
+        {
+            "name": "Centre",
+            "url": "https://centre214.com/products.json",
+            "base_handle": "https://centre214.com/products/"
+        },
+        {
+            "name": "Addict",
+            "url": "https://www.addictmiami.com/products.json",
+            "base_handle": "https://www.addictmiami.com/products/"
+        },
+        {
+            "name": "Commonwealth",
+            "url": "https://commonwealth-ftgg.com/products.json",
+            "base_handle": "https://commonwealth-ftgg.com/products/"
+        },
+        {
+            "name": "BBBranded",
+            "url": "https://www.bbbranded.com/products.json",
+            "base_handle": "https://www.bbbranded.com/products/"
         }
     ]
 }
