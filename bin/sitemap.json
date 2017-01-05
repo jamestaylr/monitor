@@ -1,0 +1,24 @@
+{
+    "sites": [
+        {
+            "name": "Kith",
+            "url": "https://kithnyc.com/sitemap_products_1.xml"
+        },
+        {
+            "name": "Bodega",
+            "url": "https://shop.bdgastore.com/sitemap_products_1.xml"
+        },
+        {
+            "name": "PackerShoes",
+            "url": "http://packershoes.com/sitemap_products_1.xml"
+        },
+        {
+            "name": "Bape",
+            "url": "http://us.bape.com/sitemap_products_1.xml"
+        },
+        {
+            "name": "BillionaireBoysClub",
+            "url": "https://www.bbcicecream.com/sitemap.xml"
+        }
+    ]
+}
