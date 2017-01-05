@@ -4,9 +4,8 @@ import requests
 import ConfigParser
 import oauth2 as oauth, urllib
 
-# Read the configuration
-config = ConfigParser.ConfigParser()
-config.read('config.ini')
+import __main__
+config = __main__.config
 
 """ Posts a tweet
 """
@@ -49,6 +48,8 @@ def tweet(status_string, media_id):
     except ValueError:
         pass
 
+""" Uploads an image URL to Twitter for use in a status
+"""
 def upload_media(link):
     r = requests.get(link)
 
