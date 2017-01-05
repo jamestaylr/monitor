@@ -4,11 +4,12 @@ import requests
 import ConfigParser
 import oauth2 as oauth, urllib
 
-from lib import twitter
-
 # Read the configuration
+global config
 config = ConfigParser.ConfigParser()
 config.read('config.ini')
+
+from lib import twitter
 
 """ Gets products from a url returning a single product or array of products
 """
@@ -25,7 +26,7 @@ def get_products(url, limit):
     return products if len(products) != 1 else products[0]
 
 # Check the content from the subscribed sites
-sites = json.loads(open('data.json').read())['sites']
+sites = json.loads(open('bin/shopify.json').read())['sites']
 for site in sites:
     print 'Processing site', site['name']
 
