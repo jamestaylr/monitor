@@ -196,11 +196,6 @@
             "base_handle": "http://shop.extrabutterny.com/products/"
         },
         {
-            "name": "Bodega",
-            "url": "http://bdga.myshopify.com/products.json",
-            "base_handle": "https://shop.bdgastore.com/products/"
-        },
-        {
             "name": "Centre",
             "url": "https://centre214.com/products.json",
             "base_handle": "https://centre214.com/products/"
@@ -219,6 +214,26 @@
             "name": "BBBranded",
             "url": "https://www.bbbranded.com/products.json",
             "base_handle": "https://www.bbbranded.com/products/"
+        },
+        {
+            "name": "MarathonSports",
+            "url": "https://marathonsports.com/products.json",
+            "base_handle": "http://www.marathonsports.com/products/"
+        },
+        {
+            "name": "Premier",
+            "url": "https://thepremierstore.com/products.json",
+            "base_handle": "https://thepremierstore.com/products/"
+        },
+        {
+            "name": "Noirfonce",
+            "url": "https://noirfonce.eu/products.json",
+            "base_handle": "https://noirfonce.eu/products/"
+        },
+        {
+            "name": "BlackMarketUSA",
+            "url": "http://blkmkt.us/products.json",
+            "base_handle": "http://blkmkt.us/products/"
         }
     ]
 }
