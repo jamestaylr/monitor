@@ -234,6 +234,41 @@
             "name": "BlackMarketUSA",
             "url": "http://blkmkt.us/products.json",
             "base_handle": "http://blkmkt.us/products/"
+        },
+        {
+            "name": "NRML",
+            "url": "http://nrml.ca/products.json",
+            "base_handle": "http://nrml.ca/products/"
+        },
+        {
+            "name": "Rise",
+            "url": "https://rise45.com/products.json",
+            "base_handle": "https://rise45.com/products/"
+        },
+        {
+            "name": "Solestop",
+            "url": "https://www.solestop.com/products.json",
+            "base_handle": "https://www.solestop.com/products/"
+        },
+        {
+            "name": "CityBlue",
+            "url": "https://www.cityblueshop.com/products.json",
+            "base_handle": "https://www.cityblueshop.com/products/"
+        },
+        {
+            "name": "UrbanIndustry",
+            "url": "https://www.urbanindustry.co.uk/products.json",
+            "base_handle": "https://www.urbanindustry.co.uk/products/"
+        },
+        {
+            "name": "HOTOVELI",
+            "url": "http://hotoveli.com/products.json",
+            "base_handle": "http://hotoveli.com/products/"
+        },
+        {
+            "name": "SamTabak",
+            "url": "https://samtabak.com/products.json",
+            "base_handle": "https://samtabak.com/products/"
         }
     ]
 }
