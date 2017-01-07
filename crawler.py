@@ -4,6 +4,13 @@ import xmltodict
 import hashlib
 import json, os
 
+# Read the configuration
+import ConfigParser
+config = ConfigParser.ConfigParser()
+config.read('config.ini')
+
+from lib import twitter
+
 sites = json.loads(open('bin/sitemap.json').read())['sites']
 for site in sites:
     print 'Processing site', site['name']

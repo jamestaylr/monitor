@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 import json, os, base64, sys
 import requests
-import ConfigParser
 import oauth2 as oauth, urllib
 
 # Read the configuration
-global config
+import ConfigParser
 config = ConfigParser.ConfigParser()
 config.read('config.ini')
 
