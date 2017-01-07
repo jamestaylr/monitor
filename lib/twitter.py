@@ -83,3 +83,34 @@ def upload_media(link):
     except ValueError:
         raise ValueError('No media ID returned')
 
+def has_been_tweeted(match):
+    # Build the OAuth client
+    consumer = oauth.Consumer(
+            key=config.get('twitter', 'consumer_key'),
+            secret=config.get('twitter', 'consumer_secret')
+        )
+    token = oauth.Token(
+            key=config.get('twitter', 'access_token'),
+            secret=config.get('twitter', 'access_secret')
+        )
+    client = oauth.Client(consumer, token)
+
+    params=urllib.urlencode({
+        'count': config.get('twitter', 'tweet_duplicate_check'),
+        'trim_user': 'true'
+    })
+
+    resp, content = client.request(
+            'https://api.twitter.com/1.1/statuses/user_timeline.json?{}'.format(params),
+            method='GET',
+            headers=None
+        )
+
+    try:
+        for tweet in json.loads(content):
+            if match in tweet['text']:
+                return True
+        return False
+    except ValueError:
+        return False
+

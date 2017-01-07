@@ -47,6 +47,10 @@ for site in sites:
         if id == previous[0]:
             break
 
+        if twitter.has_been_tweeted(product['image:image']['image:title']):
+            print 'Not posting duplicated tweet for', product['loc']
+            continue
+
         media_id = twitter.upload_media(product['image:image']['image:loc'])
         twitter.tweet('[+] {} {}'.format(
             product['image:image']['image:title'],

@@ -63,6 +63,10 @@ for site in sites:
             if product['id'] == int(previous[0]):
                 break
 
+            if twitter.has_been_tweeted(product['title']):
+                print 'Not posting duplicated tweet for', product['handle']
+                continue
+
             media_id = None
             link = '{}{}'.format(site['base_handle'], product['handle'])
             link = link.encode('ascii', 'ignore')
