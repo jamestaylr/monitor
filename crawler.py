@@ -59,10 +59,14 @@ for site in sites:
             continue
 
         media_id = twitter.upload_media(product['image:image']['image:loc'])
-        twitter.tweet('[+] {} {}'.format(
-            product['image:image']['image:title'],
-            product['loc']
-        ), media_id)
+        try:
+            twitter.tweet('{} {}'.format(
+                product['image:image']['image:title'],
+                product['loc']
+            ), media_id)
+
+        except UnicodeEncodeError:
+            print 'Caught UnicodeEncodeError'
 
     # Update the lock
     with open(lock_filename, 'w') as lock:

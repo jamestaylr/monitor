@@ -73,13 +73,16 @@ for site in sites:
             try:
                 if len(product['images']) > 0:
                     media_id = twitter.upload_media(product['images'][0]['src'])
-            except ValueError:
+            except ValueError as e:
                 print e
 
-            twitter.tweet('{} {}'.format(
-                product['title'],
-                link
-            ), media_id)
+            try:
+                twitter.tweet('{} {}'.format(
+                    product['title'],
+                    link
+                ), media_id)
+            except UnicodeEncodeError:
+                print 'Caught UnicodeEncodeError'
 
     except requests.exceptions.HTTPError:
         print 'Processing site {} failed'.format(site['name'])
