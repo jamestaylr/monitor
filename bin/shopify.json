@@ -269,6 +269,11 @@
             "name": "SamTabak",
             "url": "https://samtabak.com/products.json",
             "base_handle": "https://samtabak.com/products/"
+        },
+        {
+            "name": "BapeOnline",
+            "url": "https://bapeonline.com/products.json",
+            "base_handle": "https://bapeonline.com/products/"
         }
     ]
 }
