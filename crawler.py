@@ -11,6 +11,23 @@ config.read('config.ini')
 
 from lib import twitter
 
+""" Checks to see if a given product is duplicated in a site datafile
+"""
+def is_duplicate(product, name):
+    # Open the data file
+    dat_filename = 'locks/{}.dat'.format(name)
+    import mmap
+    try:
+        f = open(dat_filename)
+        if os.path.getsize(dat_filename) == 0:
+            return False
+    except IOError:
+        return False
+
+    s = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
+
+    return True if s.find(product) != -1 else False
+
 # Open the filter file
 with open('bin/filter.dat') as f:
     keywords = [x.strip('\n') for x in f.readlines()]
@@ -70,6 +87,10 @@ for site in sites:
         except KeyError:
             continue
 
+        # Ensure the product is not a duplicate
+        if is_duplicate(product['loc'], site['name']):
+            print 'Duplicate product', product['loc']
+            continue
 
         if twitter.has_been_tweeted(product['image:image']['image:title']):
             print 'Not posting duplicated tweet for', product['loc']
@@ -77,6 +98,11 @@ for site in sites:
 
         media_id = twitter.upload_media(product['image:image']['image:loc'])
         try:
+            dat_filename = 'locks/{}.dat'.format(site['name'])
+            with open(dat_filename, 'a') as dat:
+                dat.write('{}\n'.format(product['loc']))
+
+            print 'Tweeting product', product['image:image']['image:title']
             twitter.tweet('{} {}'.format(
                 product['image:image']['image:title'],
                 product['loc']
