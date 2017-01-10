@@ -2,6 +2,8 @@
 import json, os, base64, sys
 import requests
 import oauth2 as oauth, urllib
+from datetime import datetime
+from dateutil import parser
 
 # Read the configuration
 import ConfigParser
@@ -66,6 +68,17 @@ for site in sites:
             if has_tweeted:
                 print 'Not posting duplicated tweet for', product['handle']
                 continue
+
+            # Apply filter when tweets are too frequent
+            tweet_date = parser.parse(last_tweet['created_at']).replace(tzinfo=None)
+            x = (datetime.now() - tweet_date).total_seconds() / 60
+            if x < 10:
+                print 'Too many tweets, boundary tweet was', x, 'minutes ago'
+                brands = ['adidas', 'jordan', 'nike']
+                t = product['title'].lower().replace(' ', '')
+                if not any(x in t for x in brands):
+                    print 'No brand keywords in', product['handle']
+                    continue
 
             media_id = None
             link = '{}{}'.format(site['base_handle'], product['handle'])

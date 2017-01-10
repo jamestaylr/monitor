@@ -3,6 +3,8 @@ import requests
 import xmltodict
 import hashlib
 import json, os
+from datetime import datetime
+from dateutil import parser
 
 # Read the configuration
 import ConfigParser
@@ -99,6 +101,17 @@ for site in sites:
             continue
 
         media_id = twitter.upload_media(product['image:image']['image:loc'])
+        # Apply filter when tweets are too frequent
+        tweet_date = parser.parse(last_tweet['created_at']).replace(tzinfo=None)
+        x = (datetime.now() - tweet_date).total_seconds() / 60
+        if x < 10:
+            print 'Too many tweets, boundary tweet was', x, 'minutes ago'
+            brands = ['adidas', 'jordan', 'nike']
+            t = title.lower().replace(' ', '')
+            if not any(x in t for x in brands):
+                print 'No brand keywords in', product['loc']
+                continue
+
         try:
             dat_filename = 'locks/{}.dat'.format(site['name'])
             with open(dat_filename, 'a') as dat:
