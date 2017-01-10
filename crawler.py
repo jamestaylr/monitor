@@ -11,6 +11,12 @@ config.read('config.ini')
 
 from lib import twitter
 
+# Open the filter file
+with open('bin/filter.dat') as f:
+    keywords = [x.strip('\n') for x in f.readlines()]
+filter = [' {}'.format(x) for x in keywords] + ['{} '.format(x) for x in keywords]
+
+# Iterate through the sites
 sites = json.loads(open('bin/sitemap.json').read())['sites']
 for site in sites:
     print 'Processing site', site['name']
@@ -29,7 +35,7 @@ for site in sites:
                 x.get('lastmod', None)),
             reverse=True)
 
-    products = list(filter(lambda x: 'lastmod' in x and 'loc' in x, products))
+    products = [d for d in products if 'lastmod' in d]
     first = products[0]
 
     lock_filename = 'locks/{}.lock'.format(site['name'])
@@ -44,15 +50,26 @@ for site in sites:
                 if exc.errno != errno.EEXIST:
                     raise
         with open(lock_filename, 'w') as lock:
-            current_id = hashlib.sha224(first['loc']).hexdigest()
-            lock.write('{} {}'.format(current_id, first['lastmod']))
+            first_id = hashlib.sha224(first['loc']).hexdigest()
+            lock.write('{} {}'.format(first_id, first['lastmod']))
         print 'Creating new lock file {}'.format(lock_filename)
         continue
 
+    # Iterate through the products
     for product in products:
         id = hashlib.sha224(product['loc']).hexdigest()
         if id == previous[0]:
             break
+
+        # Apply the keyword filter
+        try:
+            title = product['image:image']['image:title'].lower()
+            if any(x in title for x in filter):
+                print 'Skipping product'
+                continue
+        except KeyError:
+            continue
+
 
         if twitter.has_been_tweeted(product['image:image']['image:title']):
             print 'Not posting duplicated tweet for', product['loc']
