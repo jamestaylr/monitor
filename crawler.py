@@ -92,7 +92,9 @@ for site in sites:
             print 'Duplicate product', product['loc']
             continue
 
-        if twitter.has_been_tweeted(product['image:image']['image:title']):
+        title = product['image:image']['image:title']
+        has_tweeted, last_tweet = twitter.has_been_tweeted(title)
+        if has_tweeted:
             print 'Not posting duplicated tweet for', product['loc']
             continue
 

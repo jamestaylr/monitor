@@ -107,10 +107,13 @@ def has_been_tweeted(match):
         )
 
     try:
-        for tweet in json.loads(content):
+        tweets = json.loads(content)
+        last = tweets[len(tweets) - 1]
+
+        for tweet in tweets:
             if match in tweet['text']:
-                return True
-        return False
+                return True, last
+        return False, last
     except ValueError:
         return False
 

@@ -62,7 +62,8 @@ for site in sites:
             if product['id'] == int(previous[0]):
                 break
 
-            if twitter.has_been_tweeted(product['title']):
+            has_tweeted, last_tweet = twitter.has_been_tweeted(product['title'])
+            if has_tweeted:
                 print 'Not posting duplicated tweet for', product['handle']
                 continue
 
