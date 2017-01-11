@@ -16,7 +16,7 @@ from lib import twitter
 """
 def get_products(url, limit):
     payload = {'limit': limit}
-    r = requests.get(url, params=payload)
+    r = requests.get(url, params=payload, timeout=5)
 
     if r.status_code != 200:
         print 'Handling a {} status code'.format(r.status_code)

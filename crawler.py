@@ -42,7 +42,7 @@ for site in sites:
 
     # Query the sitemap
     try:
-        r = requests.get(site['url'])
+        r = requests.get(site['url'], timeout=10)
     except requests.exceptions.HTTPError:
         print 'Processing site {} failed'.format(site['name'])
         continue
