@@ -73,9 +73,12 @@ def upload_media(link):
             }),
             headers=None
         )
+
     try:
         content = json.loads(content)
-        if 'media_id' not in content:
+        if not 'media_id' in content:
+            print ('Error adding media',
+                    [ str(error['message']) for error in content['errors'] ])
             raise ValueError
 
         return content['media_id']

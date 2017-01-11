@@ -100,7 +100,6 @@ for site in sites:
             print 'Not posting duplicated tweet for', product['loc']
             continue
 
-        media_id = twitter.upload_media(product['image:image']['image:loc'])
         # Apply filter when tweets are too frequent
         tweet_date = parser.parse(last_tweet['created_at']).replace(tzinfo=None)
         x = (datetime.now() - tweet_date).total_seconds() / 60
@@ -111,6 +110,11 @@ for site in sites:
             if not any(x in t for x in brands):
                 print 'No brand keywords in', product['loc']
                 continue
+
+        try:
+            media_id = twitter.upload_media(product['image:image']['image:loc'])
+        except ValueError:
+            media_id = None
 
         try:
             dat_filename = 'locks/{}.dat'.format(site['name'])
