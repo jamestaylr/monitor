@@ -77,8 +77,15 @@ for site in sites:
     # Iterate through the products
     for product in products:
         id = hashlib.sha224(product['loc']).hexdigest()
-        if id == previous[0]:
-            break
+        try:
+            if id == previous[0]:
+                break
+        except IndexError:
+            # Problem with the lock file, recreate the lock
+            with open(lock_filename, 'w') as lock:
+                lock.write('{} {}'.format(id, product['lastmod']))
+            print 'Recreating lock file {}'.format(lock_filename)
+            continue
 
         # Apply the keyword filter
         try:
