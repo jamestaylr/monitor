@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import json, os, base64, sys
 import requests
-import oauth2 as oauth, urllib
 from datetime import datetime
 from dateutil import parser
 
@@ -95,6 +94,13 @@ for site in sites:
                     product['title'],
                     link
                 ), media_id)
+
+                msg = '[{}] Posted tweet for {}'.format(
+                        config.get('daemon', 'name'),
+                        product['handle']
+                    )
+                twitter.send_dm(msg)
+
             except UnicodeEncodeError:
                 print 'Caught UnicodeEncodeError'
 

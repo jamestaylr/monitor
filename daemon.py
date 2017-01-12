@@ -12,6 +12,11 @@ config.read('config.ini')
 null = open(os.devnull, 'w')
 offset = config.getint('daemon', 'execution_offset')
 
+from lib import twitter
+n = config.get('daemon', 'name')
+twitter.send_dm('[{}] Daemon start!'.format(n))
+twitter.send_dm('[{}] Running every minute at {} second offset'.format(n, offset))
+
 while True:
     # Conduct execution
     subprocess.call(['venv/bin/python2', 'monitor.py'],

@@ -86,6 +86,32 @@ def upload_media(link):
     except ValueError:
         raise ValueError('No media ID returned')
 
+def send_dm(text, user_handle=None):
+    # Build the OAuth client
+    consumer = oauth.Consumer(
+            key=config.get('twitter', 'consumer_key'),
+            secret=config.get('twitter', 'consumer_secret')
+        )
+    token = oauth.Token(
+            key=config.get('twitter', 'access_token'),
+            secret=config.get('twitter', 'access_secret')
+        )
+    client = oauth.Client(consumer, token)
+
+    # Send the request
+    resp, content = client.request(
+            'https://api.twitter.com/1.1/direct_messages/new.json',
+            method='POST',
+            body=urllib.urlencode({
+                'text': text,
+                'user_id': (config.get('twitter', 'user_id')
+                        if user_handle is None
+                        else user_handle
+                    )
+            }),
+            headers=None
+        )
+
 def has_been_tweeted(match):
     # Build the OAuth client
     consumer = oauth.Consumer(
