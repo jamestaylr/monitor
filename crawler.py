@@ -118,6 +118,20 @@ for site in sites:
                 print 'No brand keywords in', product['loc']
                 continue
 
+        # Check the products sold out status
+        try:
+            rp = requests.get(product['loc'], timeout=5)
+            content = rp.content.lower()
+            if 'this product is currently sold out' in content:
+                twitter.send_dm('[{}] Sold out: {}'.format(
+                        config.get('daemon', 'name'),
+                        product['loc']
+                    ))
+                continue
+        except requests.exceptions.HTTPError:
+            pass
+
+        # Upload the product image
         try:
             media_id = twitter.upload_media(product['image:image']['image:loc'])
         except ValueError:
