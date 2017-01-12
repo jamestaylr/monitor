@@ -63,6 +63,11 @@ for site in sites:
             if product['id'] == int(previous[0]):
                 break
 
+            keywords = ['shoe', 'train', 'foot', 'sneaker', 'run']
+            if not any(x in product['product_type'].lower() for x in keywords):
+                print 'Skipping product', product['handle']
+                continue
+
             has_tweeted, last_tweet = twitter.has_been_tweeted(product['title'])
             if has_tweeted:
                 print 'Not posting duplicated tweet for', product['handle']
@@ -83,6 +88,7 @@ for site in sites:
             link = '{}{}'.format(site['base_handle'], product['handle'])
             link = link.encode('ascii', 'ignore')
 
+            # Upload the product image
             try:
                 if len(product['images']) > 0:
                     media_id = twitter.upload_media(product['images'][0]['src'])
