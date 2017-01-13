@@ -274,6 +274,16 @@
             "name": "BapeOnline",
             "url": "https://bapeonline.com/products.json",
             "base_handle": "https://bapeonline.com/products/"
+        },
+        {
+            "name": "SaveOurSole",
+            "url": "http://www.saveoursole.de/products.json",
+            "base_handle": "http://www.saveoursole.de/products/"
+        },
+        {
+            "name": "SoleClassics",
+            "url": "https://soleclassics.com/products.json",
+            "base_handle": "https://soleclassics.com/products/"
         }
     ]
 }
