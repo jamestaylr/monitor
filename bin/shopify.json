@@ -284,6 +284,31 @@
             "name": "SoleClassics",
             "url": "https://soleclassics.com/products.json",
             "base_handle": "https://soleclassics.com/products/"
+        },
+        {
+            "name": "Roony",
+            "url": "https://www.rooneyshop.com/products.json",
+            "base_handle: "https://www.rooneyshop.com/products/"
+        },
+        {
+            "name": "SocialStatus",
+            "url": "https://www.socialstatuspgh.com/products.json",
+            "base_handle": "https://www.socialstatuspgh.com/products/"
+        },
+        {
+            "name": "VancouverRunningCo",
+            "url": "https://vanrunco.com/products.json",
+            "base_handle": "https://vanrunco.com/products/"
+        },
+        {
+            "name": "Homebre",
+            "url": "https://store.hombreamsterdam.com/products.json",
+            "base_handle": "https://store.hombreamsterdam.com/products/"
+        },
+        {
+            "name": "Atmos",
+            "url": "https://atmosny.com/products.json",
+            "base_handle": "https://atmosny.com/products/"
         }
     ]
 }
