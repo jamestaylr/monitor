@@ -7,13 +7,7 @@ import oauth2 as oauth, urllib
 import __main__
 config = __main__.config
 
-""" Posts a tweet
-"""
-def tweet(status_string, media_id):
-    if not config.getboolean('twitter', 'should_tweet'):
-        print 'Abort posting tweet'
-        return
-
+def get_auth_client():
     # Build the OAuth client
     consumer = oauth.Consumer(
             key=config.get('twitter', 'consumer_key'),
@@ -23,7 +17,14 @@ def tweet(status_string, media_id):
             key=config.get('twitter', 'access_token'),
             secret=config.get('twitter', 'access_secret')
         )
-    client = oauth.Client(consumer, token)
+    return oauth.Client(consumer, token)
+
+""" Posts a tweet
+"""
+def tweet(status_string, media_id):
+    if not config.getboolean('twitter', 'should_tweet'):
+        print 'Abort posting tweet'
+        return
 
     data = {
         'status': status_string,
@@ -33,6 +34,7 @@ def tweet(status_string, media_id):
         data['media_ids'] = media_id
 
     # Send the request
+    client = get_auth_client()
     resp, content = client.request(
             'https://api.twitter.com/1.1/statuses/update.json',
             method='POST',
@@ -53,18 +55,8 @@ def tweet(status_string, media_id):
 def upload_media(link):
     r = requests.get(link)
 
-    # Build the OAuth client
-    consumer = oauth.Consumer(
-            key=config.get('twitter', 'consumer_key'),
-            secret=config.get('twitter', 'consumer_secret')
-        )
-    token = oauth.Token(
-            key=config.get('twitter', 'access_token'),
-            secret=config.get('twitter', 'access_secret')
-        )
-    client = oauth.Client(consumer, token)
-
     # Send the request
+    client = get_auth_client()
     resp, content = client.request(
             'https://upload.twitter.com/1.1/media/upload.json',
             method='POST',
@@ -87,18 +79,8 @@ def upload_media(link):
         raise ValueError('No media ID returned')
 
 def send_dm(text, user_handle=None):
-    # Build the OAuth client
-    consumer = oauth.Consumer(
-            key=config.get('twitter', 'consumer_key'),
-            secret=config.get('twitter', 'consumer_secret')
-        )
-    token = oauth.Token(
-            key=config.get('twitter', 'access_token'),
-            secret=config.get('twitter', 'access_secret')
-        )
-    client = oauth.Client(consumer, token)
-
     # Send the request
+    client = get_auth_client()
     resp, content = client.request(
             'https://api.twitter.com/1.1/direct_messages/new.json',
             method='POST',
@@ -113,22 +95,12 @@ def send_dm(text, user_handle=None):
         )
 
 def has_been_tweeted(match):
-    # Build the OAuth client
-    consumer = oauth.Consumer(
-            key=config.get('twitter', 'consumer_key'),
-            secret=config.get('twitter', 'consumer_secret')
-        )
-    token = oauth.Token(
-            key=config.get('twitter', 'access_token'),
-            secret=config.get('twitter', 'access_secret')
-        )
-    client = oauth.Client(consumer, token)
-
-    params=urllib.urlencode({
+    params = urllib.urlencode({
         'count': config.get('twitter', 'tweet_duplicate_check'),
         'trim_user': 'true'
     })
 
+    client = get_auth_client()
     resp, content = client.request(
             'https://api.twitter.com/1.1/statuses/user_timeline.json?{}'.format(params),
             method='GET',
