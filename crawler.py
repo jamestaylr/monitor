@@ -147,12 +147,6 @@ for site in sites:
             with open(dat_filename, 'a') as dat:
                 dat.write('{}\n'.format(product['loc']))
 
-            msg = '[{}] Posted tweet for {}'.format(
-                    config.get('daemon', 'name'),
-                    product['loc']
-                )
-            twitter.send_dm(msg)
-
         except UnicodeEncodeError:
             print 'Caught UnicodeEncodeError'
 

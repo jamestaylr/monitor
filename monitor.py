@@ -101,12 +101,6 @@ for site in sites:
                     link
                 ), media_id)
 
-                msg = '[{}] Posted tweet for {}'.format(
-                        config.get('daemon', 'name'),
-                        product['handle']
-                    )
-                twitter.send_dm(msg)
-
             except UnicodeEncodeError:
                 print 'Caught UnicodeEncodeError'
 
