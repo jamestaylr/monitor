@@ -120,15 +120,17 @@ for site in sites:
 
         # Check the products sold out status
         try:
-            rp = requests.get(product['loc'], timeout=5)
-            content = rp.content.lower()
-            if 'this product is currently sold out' in content:
-                twitter.send_dm('[{}] Sold out: {}'.format(
-                        config.get('daemon', 'name'),
-                        product['loc']
-                    ))
+            rp = requests.get('{}.json'.format(product['loc']), timeout=5)
+            obj = json.loads(rp.content)
+            have_stock = False
+            for variant in obj['product']['variants']:
+                have_stock = have_stock or variant['inventory_quantity'] > 0
+
+            if not have_stock:
+                twitter.send_dm('{} appears to not be in stock'.format(product['loc']))
                 continue
-        except requests.exceptions.HTTPError:
+
+        except (requests.exceptions.HTTPError, ValueError):
             pass
 
         # Upload the product image
