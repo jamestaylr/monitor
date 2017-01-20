@@ -123,12 +123,16 @@ for site in sites:
             rp = requests.get('{}.json'.format(product['loc']), timeout=5)
             obj = json.loads(rp.content)
             have_stock = False
-            for variant in obj['product']['variants']:
-                have_stock = have_stock or variant['inventory_quantity'] > 0
 
-            if not have_stock:
-                twitter.send_dm('{} appears to not be in stock'.format(product['loc']))
-                continue
+            try:
+                for variant in obj['product']['variants']:
+                    have_stock = have_stock or variant['inventory_quantity'] > 0
+
+                if not have_stock:
+                    twitter.send_dm('{} appears to not be in stock'.format(product['loc']))
+                    continue
+            except KeyError:
+                pass
 
         except (requests.exceptions.HTTPError, ValueError):
             pass
