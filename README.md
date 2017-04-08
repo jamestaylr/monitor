@@ -5,7 +5,7 @@ The `monitor.py` script is intended to be run at high frequencies, sleeping for 
 ## Project Setup
 It is recommended to run the script inside of a virtual environment:
 
-    pip install virtualenv
+    sudo pip install virtualenv
 
 Then create the environment and install the `pip` dependencies as follows:
 
