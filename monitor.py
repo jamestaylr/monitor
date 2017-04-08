@@ -78,7 +78,7 @@ for site in sites:
             x = (datetime.now() - tweet_date).total_seconds() / 60
             if x < 10:
                 print 'Too many tweets, boundary tweet was', x, 'minutes ago'
-                brands = ['adidas', 'jordan', 'nike', 'nmd', 'yeezy', 'ultraboost']
+                brands = ['adidas', 'jordan', 'nike', 'nmd', 'yeezy', 'ultraboost', 'asics', 'pk']
                 t = product['title'].lower().replace(' ', '')
                 if not any(x in t for x in brands):
                     print 'No brand keywords in', product['handle']

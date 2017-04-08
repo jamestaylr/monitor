@@ -75,6 +75,7 @@ for site in sites:
         continue
 
     # Iterate through the products
+    tweet_count = 0
     for product in products:
         id = hashlib.sha224(product['loc']).hexdigest()
         try:
@@ -87,9 +88,16 @@ for site in sites:
             print 'Recreating lock file {}'.format(lock_filename)
             continue
 
-        # Apply the keyword filter
+                # Apply the keyword filter
         try:
             title = product['image:image']['image:title'].lower()
+
+            brands = ['adidas', 'jordan', 'nike', 'nmd', 'yeezy', 'ultraboost', 'pk']
+            t = title.lower().replace(' ', '')
+            if not any(x in t for x in brands):
+                print 'No brand keywords in', product['loc']
+                continue
+
             if any(x in title for x in filter):
                 print 'Skipping product'
                 continue
@@ -107,16 +115,14 @@ for site in sites:
             print 'Not posting duplicated tweet for', product['loc']
             continue
 
-        # Apply filter when tweets are too frequent
+        if tweet_count > 5:
+            break
+
         tweet_date = parser.parse(last_tweet['created_at']).replace(tzinfo=None)
         x = (datetime.now() - tweet_date).total_seconds() / 60
-        if x < 10:
-            print 'Too many tweets, boundary tweet was', x, 'minutes ago'
-            brands = ['adidas', 'jordan', 'nike', 'nmd', 'yeezy', 'ultraboost']
-            t = title.lower().replace(' ', '')
-            if not any(x in t for x in brands):
-                print 'No brand keywords in', product['loc']
-                continue
+
+        if x > 20:
+            break
 
         # Check the products sold out status
         try:
@@ -129,7 +135,6 @@ for site in sites:
                     have_stock = have_stock or variant['inventory_quantity'] > 0
 
                 if not have_stock:
-                    twitter.send_dm('{} appears to not be in stock'.format(product['loc']))
                     continue
             except KeyError:
                 pass
@@ -148,6 +153,7 @@ for site in sites:
                 product['image:image']['image:title'],
                 product['loc']
             ), media_id)
+            tweet_count += 1
 
             dat_filename = 'locks/{}.dat'.format(site['name'])
             with open(dat_filename, 'a') as dat:
