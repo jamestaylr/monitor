@@ -309,6 +309,26 @@
             "name": "Atmos",
             "url": "https://atmosny.com/products.json",
             "base_handle": "https://atmosny.com/products/"
+        },
+        {
+            "name": "CrepHut",
+            "url": "https://www.crephut.com/products.json",
+            "base_handle": "https://www.crephut.com/products/"
+        },
+        {
+            "name": "BMPlus",
+            "url": "https://www.bmplusstore.de/products.json",
+            "base_handle": "https://www.bmplusstore.de/products/"
+        },
+        {
+            "name": "Unknwn",
+            "url": "https://www.unknwn.com/products.json",
+            "base_handle": "https://www.unknwn.com/products/"
+        },
+        {
+            "name": "SocialStatusPGH",
+            "url": "http://www.socialstatuspgh.com/products.json",
+            "base_handle": "http://www.socialstatuspgh.com/products/"
         }
     ]
 }
