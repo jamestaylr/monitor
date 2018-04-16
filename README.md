@@ -9,7 +9,7 @@ It is recommended to run the script inside of a virtual environment:
 
 Then create the environment and install the `pip` dependencies as follows:
 
-    virtualenv -p /usr/local/bin/python2 venv
+    virtualenv -p $(which python) venv
     source venv/bin/activate
     pip install -r requirements.txt
     deactivate
